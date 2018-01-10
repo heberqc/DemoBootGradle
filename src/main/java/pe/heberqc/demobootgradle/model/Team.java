@@ -1,5 +1,10 @@
 package pe.heberqc.demobootgradle.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Team {
     public Long getId() {
         return id;
@@ -33,7 +38,10 @@ public class Team {
         this.mascotte = mascotte;
     }
 
+    @Id
+    @GeneratedValue
     private Long id;
+
     private String name;
     private String location;
     private String mascotte;

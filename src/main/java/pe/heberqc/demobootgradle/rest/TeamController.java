@@ -1,29 +1,22 @@
 package pe.heberqc.demobootgradle.rest;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.heberqc.demobootgradle.model.Team;
+import pe.heberqc.demobootgradle.repository.TeamRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class TeamController {
-    @RequestMapping("/teams")
-    public List<Team> getTeams(){
-        List<Team> list = new ArrayList<>();
-        Team team = new Team();
-        team.setId(0l);
-        team.setLocation("Harlem");
-        team.setName("Globetrotters");
-        list.add(team);
 
-        team = new Team();
-        team.setId(1l);
-        team.setLocation("Washington");
-        team.setName("Generals");
-        list.add(team);
+    @Autowired
+    private TeamRepository teamRepository;
 
-        return list;
+    @GetMapping("/teams")
+    public Iterable<Team> getTeams() {
+        return teamRepository.findAll();
     }
 }
