@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.heberqc.demobootgradle.model.Team;
 import pe.heberqc.demobootgradle.repository.TeamRepository;
 
-@RestController
+//@RestController
 public class TeamController {
 
     @Autowired
