@@ -1,11 +1,32 @@
 package pe.heberqc.demobootgradle.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Team {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
+    private String location;
+    private String mascotte;
+
+    @OneToMany(cascade= CascadeType.ALL)
+    @JoinColumn(name="teamId")
+    private Set<Player> players;
+
+    public Team(){
+    }
+
+    public Team(String name, String location, Set<Player> players) {
+        this.name = name;
+        this.location = location;
+        this.players = players;
+    }
+
     public Long getId() {
         return id;
     }
@@ -38,11 +59,11 @@ public class Team {
         this.mascotte = mascotte;
     }
 
-    @Id
-    @GeneratedValue
-    private Long id;
+    public Set<Player> getPlayers() {
+        return players;
+    }
 
-    private String name;
-    private String location;
-    private String mascotte;
+    public void setPlayers(Set<Player> players) {
+        this.players = players;
+    }
 }
